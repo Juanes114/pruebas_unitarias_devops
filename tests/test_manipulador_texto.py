@@ -1,8 +1,9 @@
+import pytest
 from src.manipulador_texto import (
     invertir_cadena, contar_vocales, contar_consonantes, es_palindromo,
     eliminar_duplicados, capitalizar_palabras, reemplazar_subcadena,
     dividir_en_palabras, extraer_dominio, enmascarar_email,
-    normalizar_espacios, truncar, es_anagrama,
+    normalizar_espacios, truncar, es_anagrama, convertir_a_titulo
 )
 
 
@@ -198,6 +199,88 @@ def test_es_anagrama_ignora_mayusculas_y_espacios():
 def test_es_anagrama_cadenas_distintas():
     # Arrange
     cadena1, cadena2 = "hola", "mundo"
+    # Act
+    resultado = es_anagrama(cadena1, cadena2)
+    # Assert
+    assert resultado is False
+    
+def test_convertir_a_titulo_valido():
+    # Arrange
+    cadena = "hola mundo"
+    # Act
+    resultado = convertir_a_titulo(cadena)
+    # Assert
+    assert resultado == "Hola Mundo"
+
+
+def test_convertir_a_titulo_vacio():
+    # Arrange
+    cadena = ""
+    # Act
+    resultado = convertir_a_titulo(cadena)
+    # Assert
+    assert resultado == ""
+
+
+@pytest.mark.parametrize("funcion, esperado", [
+    (contar_vocales, 0),
+    (contar_consonantes, 0),
+    (es_palindromo, False),
+    (eliminar_duplicados, ""),
+    (capitalizar_palabras, ""),
+    (dividir_en_palabras, []),
+    (extraer_dominio, ""),
+    (enmascarar_email, ""),
+    (normalizar_espacios, ""),
+])
+def test_funciones_con_cadena_vacia_devuelven_valor_neutro(funcion, esperado):
+    # Arrange
+    cadena = ""
+    # Act
+    resultado = funcion(cadena)
+    # Assert
+    assert resultado == esperado
+
+
+def test_enmascarar_email_con_dos_arrobas():
+    # Arrange
+    email = "a@b@c.com"
+    # Act
+    resultado = enmascarar_email(email)
+    # Assert
+    assert resultado == ""
+
+
+def test_extraer_dominio_con_dos_arrobas():
+    # Arrange
+    email = "a@b@c.com"
+    # Act
+    resultado = extraer_dominio(email)
+    # Assert
+    assert resultado == ""
+
+
+def test_reemplazar_subcadena_cadena_vacia():
+    # Arrange
+    cadena = ""
+    # Act
+    resultado = reemplazar_subcadena(cadena, "a", "b")
+    # Assert
+    assert resultado == ""
+
+
+def test_truncar_cadena_vacia():
+    # Arrange
+    cadena = ""
+    # Act
+    resultado = truncar(cadena, 5)
+    # Assert
+    assert resultado == ""
+
+
+def test_es_anagrama_con_cadena_vacia():
+    # Arrange
+    cadena1, cadena2 = "", "abc"
     # Act
     resultado = es_anagrama(cadena1, cadena2)
     # Assert

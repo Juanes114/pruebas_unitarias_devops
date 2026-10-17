@@ -170,3 +170,16 @@ def test_gramos_a_onzas_negativo_lanza_error():
     # Act / Assert
     with pytest.raises(ValueError):
         gramos_a_onzas(gramos)
+        
+@pytest.mark.parametrize("funcion", [
+    metros_a_kilometros, kilometros_a_metros, libras_a_kilogramos,
+    kilogramos_a_libras, galones_a_litros, litros_a_galones,
+    millas_a_kilometros, kilometros_a_millas, pies_a_metros,
+    metros_a_pies, onzas_a_gramos, gramos_a_onzas,
+])
+def test_conversiones_con_valor_negativo_lanzan_error(funcion):
+    # Arrange
+    valor = -1
+    # Act / Assert
+    with pytest.raises(ValueError):
+        funcion(valor)

@@ -1,7 +1,7 @@
 import pytest
 from src.calculadora import (
     sumar, restar, dividir, raiz_cuadrada, promedio, maximo, minimo,
-    calcular_area_rectangulo,
+    calcular_area_rectangulo, multiplicar, potencia, calcular_perimetro_rectangulo
 )
 
 
@@ -107,3 +107,62 @@ def test_area_rectangulo_negativo_lanza_error():
     # Act / Assert
     with pytest.raises(ValueError):
         calcular_area_rectangulo(base, altura)
+        
+def test_multiplicar_valido():
+    # Arrange
+    a, b = 3, 4
+    # Act
+    resultado = multiplicar(a, b)
+    # Assert
+    assert resultado == 12
+
+
+def test_potencia_valida():
+    # Arrange
+    base, exponente = 2, 10
+    # Act
+    resultado = potencia(base, exponente)
+    # Assert
+    assert resultado == 1024
+
+
+def test_maximo_lista_vacia_lanza_error():
+    # Arrange
+    lista = []
+    # Act / Assert
+    with pytest.raises(ValueError):
+        maximo(lista)
+
+
+def test_minimo_lista_vacia_lanza_error():
+    # Arrange
+    lista = []
+    # Act / Assert
+    with pytest.raises(ValueError):
+        minimo(lista)
+
+
+def test_minimo_con_menor_al_final():
+    # Arrange
+    lista = [9, 5, 3]
+    # Act
+    resultado = minimo(lista)
+    # Assert
+    assert resultado == 3
+
+
+def test_perimetro_rectangulo_valido():
+    # Arrange
+    base, altura = 4, 5
+    # Act
+    resultado = calcular_perimetro_rectangulo(base, altura)
+    # Assert
+    assert resultado == 18
+
+
+def test_perimetro_rectangulo_negativo_lanza_error():
+    # Arrange
+    base, altura = -1, 5
+    # Act / Assert
+    with pytest.raises(ValueError):
+        calcular_perimetro_rectangulo(base, altura)
