@@ -2,7 +2,7 @@
 Módulo de validación de datos.
 ATENCIÓN: Hay 1 bug oculto en este archivo.
 """
-
+import calendar
 import re
 
 def validar_email(email):
@@ -95,10 +95,10 @@ def validar_fecha(dia, mes, año):
     if mes < 1 or mes > 12:
         return False
 
-    if dia < 1 or dia > 31:
+    if año < 1900 or año > 2100:
         return False
 
-    if año < 1900 or año > 2100:
+    if dia < 1 or dia > calendar.monthrange(año, mes)[1]:
         return False
 
     return True
