@@ -31,7 +31,8 @@ def es_palindromo(texto):
         return False
 
     # BUG: No maneja espacios ni mayúsculas
-    return texto == texto[::-1]
+    texto_limpio = "".join(c.lower() for c in texto if c.isalnum())
+    return texto_limpio == texto_limpio[::-1]
 
 def eliminar_espacios_extra(texto):
     """Elimina espacios extra de un texto."""
