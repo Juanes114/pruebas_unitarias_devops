@@ -49,7 +49,7 @@ def test_raiz_cuadrada_de_nueve():
     assert resultado == 3
 
 
-def test_raiz_cuadrada_negativo_lanza_error():  # BUG 1
+def test_raiz_cuadrada_negativo_lanza_error():
     # Arrange
     numero = -4
     # Act / Assert
@@ -83,7 +83,7 @@ def test_maximo_lista_con_negativos():
     assert resultado == -1
 
 
-def test_minimo_lista_de_positivos():  # BUG 2
+def test_minimo_lista_de_positivos():
     # Arrange
     lista = [3, 5, 9]
     # Act
