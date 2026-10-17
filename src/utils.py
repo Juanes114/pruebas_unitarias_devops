@@ -88,5 +88,6 @@ def mcd(a, b):
 
 def mcm(a, b):
     """Calcula el Mínimo Común Múltiplo."""
-    # BUG: Error en el cálculo
-    return a * b // mcd(a, b)
+    if a == 0 or b == 0:
+        return 0
+    return abs(a * b) // abs(mcd(a, b))
